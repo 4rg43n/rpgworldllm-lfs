@@ -1,0 +1,8 @@
+ANIME/DPAINT:
+vanimix_v10.safetensors
+revAnimated_v2Rebirth.safetensors
+
+
+REAL:
+realisticVisionV60B1_v51HyperVAE.safetensors
+

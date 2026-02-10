@@ -1,0 +1,10 @@
+primary subject + pose + lighting   ← never weighted
+secondary attributes (color/fit)    ← tiny weight 1.05–1.1
+context anchors (casual / jeans)    ← counterweight 1.1–1.15
+strong negatives for known drift    ← surgical, not broad
+
+
+sports bra, casual outfit, jeans,
+(dark color:1.05)
+
+
