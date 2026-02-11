@@ -4,5 +4,33 @@ revAnimated_v2Rebirth.safetensors
 
 
 REAL:
+juggernautXL_ragnarokBy.safetensors
+colossusProjectXLSFW_12cExperimental3.safetensors
+absolutereality_v181.safetensors (pretty but bad anatomy in small amounts)
+copaxRealistic_v10.safetensors (backgrounds)
+dreamshaper_8.safetensors (stylized)
+fucktasticRealCheckpointPony_40.safetensors
+dreamshaperXL_v21TurboDPMSDE.safetensors
+realDream_15SD15.safetensors
+pornmaster_v7FP16VAE.safetensors
+ponyRealPlus_v60.safetensors
+ponyRealism_V23.safetensors
 realisticVisionV60B1_v51HyperVAE.safetensors
+realismIllustriousBy_v40FP16.safetensors
+protovisionXLHighFidelity3D_releaseV660Bakedvae.safetensors
+revAnimated_v2Rebirth.safetensors
+
+
+
+
+to try
+Strong baseline realism
+
+RealVisXL
+
+JuggernautXL
+
+EpicRealism XL
+
+Photon XL / Analog-style XL
 

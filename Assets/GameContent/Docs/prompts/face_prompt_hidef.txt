@@ -1,0 +1,95 @@
+young woman,
+petite build, slim natural proportions,
+
+young woman,
+balanced facial features,
+pleasant natural appearance,
+bright expressive eyes,
+neutral relaxed expression, calm presence,
+
+natural facial structure,
+natural facial micro-variation,
+subtle tonal variation in skin,
+realistic light response on skin,
+
+softly styled hair, natural flow,
+light everyday makeup, subtle blush, natural lip color,
+
+(black bra:1.05), (skinny jeans:1.1),
+jacket worn casually,
+book bag,
+
+upper torso view,
+head and shoulders framing,
+upper chest visible,
+face centered in frame,
+head fully visible, hair fully visible, no head cutoff,
+composition framed from head to mid-torso,
+natural upright posture,
+
+soft even lighting, balanced illumination,
+natural light falloff,
+no harsh shadows, no deep facial shadows,
+
+stylized realistic character image,
+clean neutral background,
+soft depth separation,
+sharp overall image,
+high visual clarity
+
+
+
+
+
+
+
+
+
+
+child, underage,
+school uniform,
+
+oversexualized, fetish, cleavage focus,
+provocative pose,
+
+cropped head, head out of frame, cut off head,
+
+bad anatomy, distorted anatomy,
+extra limbs, extra fingers,
+missing fingers, fused fingers,
+deformed hands, malformed hands,
+poorly drawn hands, unnatural hand pose,
+
+wrinkles, deep wrinkles,
+pronounced skin creases,
+heavy nasolabial folds,
+age lines, crow's feet,
+aged appearance,
+
+harsh lighting, dramatic lighting,
+side lighting, top-down lighting,
+deep facial shadows, high contrast,
+
+heavy facial outlines,
+dark contour lines,
+overdefined facial features,
+
+picture frame, framed portrait,
+decorative border, ornate frame,
+
+easel, canvas, painting,
+art studio, drawing board,
+tripod, camera, studio equipment,
+
+anime, cartoon, illustration,
+blurry, noisy, jpeg artifacts,
+low quality image
+beauty retouch, skin retouch,
+cosmetic smoothing,
+airbrushed skin,
+foundation-heavy makeup,
+plastic skin
+
+
+
+

@@ -1,0 +1,60 @@
+wa-illus 
+people mix
+
+masterpiece, best quality, amazing quality, very aesthetic, angle,
+bedroom, up against wall
+1girl, nude, bright blond hair, messy hair, , nervous, looking back, , medium breasts, (exposed breasts:1.3), moaning, pubic hair,
+vaginal sex, deep penetration from behind, doggy style position, spread legs, arched back, (large puffy pussy, labia, clitoris:1.3), perfect penis, detailed penis,
+side view
+beautiful mature face,
+Steps: 29, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 5, Seed: 1386468498, Size: 1228x1843, Model hash: bdb59bac77, Model: waiIllustriousSDXL_v140, Clip skip: 2, Version: v1.10.1
+
+
+
+
+masterpiece, best quality, amazing quality, very aesthetic, angle,
+bedroom, up against wall
+1girl, nude, bright blond hair, messy hair, , nervous, looking back, , medium breasts, (exposed breasts:1.3), moaning, pubic hair,
+vaginal sex, deep penetration from behind, doggy style position, spread legs, arched back, (large puffy pussy, labia, clitoris:1.3), perfect penis, detailed penis,
+side view
+beautiful mature face, <lora:ppw_v8_Illuv2stable_128:1>
+Steps: 29, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 5, Seed: 1386468498, Size: 1228x1843, Model hash: bdb59bac77, Model: waiIllustriousSDXL_v140, Clip skip: 2, Lora hashes: "ppw_v8_Illuv2stable_128: b8161ae35b20", Version: v1.10.1
+
+
+
+
+masterpiece, best quality, very aesthetic, realism,
+1girl, solo, anime, pink hair, long hair, pigtails, cute, kawaii, japanese,
+anime mouth, drooling, trembling, plump lips, cute,
+small breasts, skinny, small breasts, skinny breasts,
+slender legs, lender thighs, thigh gap, slender butt,
+ear rings, piercings, , shaved vagina, shaved crotch,
+squirming, trembling, overstimulated, eye roll, wobbly mouth,anime mouth,
+wet pussy, tired, woozy, passed out, sleeping, sleep,
+sex toys on the bed, unused sex toys, condoms, used tissues, porn magazines,
+wet pussy, stained bedsheets,
+bullet vibrator string, <lora:96YOTTEA-WAI:0.4> <lora:incase_new_style_red_ill:0.95>
+Negative prompt: worst quality, low quality, lowres, jpeg artifacts, compression artifacts, blurry, low detail, bad anatomy, bad hands, bad eyes, bad proportions, distorted limbs, extra limbs, extra digits, fused fingers, missing fingers, malformed hands, bad feet, asymmetrical face, distorted facial features, watermark, text, logo, signature, cropped, small eyes, eyes closed, nsfw, fat belly
+Steps: 30, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 4, Seed: 1099931262, Size: 1228x1843, Model hash: bdb59bac77, Model: waiIllustriousSDXL_v140, Clip skip: 2, Lora hashes: "96YOTTEA-WAI: 7a6cdc714921, incase_new_style_red_ill: 020caeda43c3", Version: v1.10.1
+
+
+
+miku nakano, long hair, bangs, blue eyes, brown hair, hair between eyes,mature female, large breasts,1girl,nipples ,topless , cap, standing,cleavage ,nipples, wet ,bikini group hug, man short messy black hair,faceless male, man group, girl inbetween group of man,breast squeeze hard, girl wink,beach, blush,cinematic, natural skin,soft lighting, volumetric lighting,
+(masterpiece:1.2), (best quality:1.2), (very aesthetic:1.2), (amazing quality,:1.2), (detailed background),(best illumination),newest, perfect anatomy,illustration, <lora:96YOTTEA-WAI:0.3> <lora:mon_monmon2133:0.3>
+Negative prompt: negativeXL_D, (worst quality, low quality, extra digits:1.4),(extra fingers), (bad hands), missing fingers, unaestheticXL2v10,
+Steps: 30, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 6, Seed: 1643767472, Size: 1228x1843, Model hash: bdb59bac77, Model: waiIllustriousSDXL_v140, Clip skip: 2, Lora hashes: "96YOTTEA-WAI: 7a6cdc714921, mon_monmon2133: 9dcf6d165d08", Version: v1.10.1
+
+
+
+
+score_9, score_8_up, score_7_up, HDR, 8K, masterpiece, best quality, amazing quality, very aesthetic, newest, dynamic angle, (artist:incase:0.1), (artist:tsuaii:0.1), (realistic:1), (flat colors:2),
+outdoors, night, pool
+1girl, nude, brown hair, curly hair, high bun, single bun, no lose hair, forehead, black necklace, brown eyes, blushing, nervous, pleasure, medium breasts, (exposed breasts:1.3), (moaning:1.3), orgasm face
+2boys, brown-haired boys, boys very short hair, mmf threesome, hetero, (sandwiched:1.4), double penetration, vaginal, anal, group sex, ass, penis, blush, boys naked, leg lift, leg up, (grab ass:1.0), shoulder to shoulder, collarbones, pussy, (pussy juice:1.2), look back,
+from side, mid-range, (from below:0.5) <lora:ppw_v8_Illuv2stable_128:1>
+Negative prompt: score_4, score_5, score_6, extra fingers,distorted hands,distorted fingers, low quality, lowres, bad anatomy,worst quality, simple background, censored,text,signature, lineless, watermark,signature, logo, easynegative, low-quality, moir pattern, downsampling, aliasing, distorted, blurry, glossy, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, distortion, twisted, excessive, exaggerated pose, exaggerated limbs, mixed characters, grainy, symmetrical, duplicate, error, pattern, beginner, pixelated, fake, hyper, glitch, overexposed, high-contrast, bad-contrast, black and white, messy, Deformed, Deformed face, Deformed fingers, Deformed hands, Out of frame, Poorly drawn face, Poorly drawn feet, Poorly drawn hands, Draft, Grainy, Kitsch, Low-res, old, sketch, black and white, doujinshi, exaggerated anatomy, long neck, SimpleNegativeV3, (large areola), pubes, pierced nipples, zPDXLxxx, old, old woman, fat,
+Steps: 29, Sampler: Euler, Schedule type: Automatic, CFG scale: 5, Seed: 1805012905, Size: 1228x1843, Model hash: bdb59bac77, Model: waiIllustriousSDXL_v140, Clip skip: 2, Lora hashes: "ppw_v8_Illuv2stable_128: b8161ae35b20", TI hashes: "zPDXLxxx: 000e2b1616e9, zPDXLxxx: 000e2b1616e9", Version: v1.10.1
+
+
+
+
