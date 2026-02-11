@@ -1,3 +1,4 @@
+using RPGWorld.Chat;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -62,6 +63,7 @@ namespace RPGWorld.UI
 
         private void ProcessInput(string input_str)
         {
+            ChatHistory.Instance.AddText("test", input_str);
             Debug.Log(input_str);
         }
     }
