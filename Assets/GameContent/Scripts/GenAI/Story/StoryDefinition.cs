@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Story
 {
-    public class StoryDefinition : BaseStoryObject
+    public class StoryDefinition : HistoryStoryObject
     {
         public Dictionary<string, List<string>> sectionMap = new Dictionary<string, List<string>>(); // the sections after they're processed
         
@@ -16,9 +16,45 @@ namespace RPGWorldLLM.GenAI.Story
         {
             StoryDefinition newStory = new StoryDefinition();
 
+            // Copy BaseStoryObject properties
+            newStory.id = id;
             newStory.name = name;
             newStory.description = description;
-            newStory.inputSectionMap = inputSectionMap; // this should mabye be a deep copy
+
+            // Deep copy HistoryStoryObject lists
+            newStory.memoryItems = new List<MemoryItem>();
+            foreach (var item in memoryItems)
+            {
+                newStory.memoryItems.Add(new MemoryItem
+                {
+                    rawText = item.rawText,
+                    summmarizedText = item.summmarizedText
+                });
+            }
+
+            newStory.factItems = new List<FactItem>();
+            foreach (var item in factItems)
+            {
+                newStory.factItems.Add(new FactItem
+                {
+                    name = item.name,
+                    text = item.text
+                });
+            }
+
+            // Deep copy sectionMap
+            newStory.sectionMap = new Dictionary<string, List<string>>();
+            foreach (var kvp in sectionMap)
+            {
+                newStory.sectionMap[kvp.Key] = new List<string>(kvp.Value);
+            }
+
+            // Deep copy inputSectionMap
+            newStory.inputSectionMap = new Dictionary<string, List<string>>();
+            foreach (var kvp in inputSectionMap)
+            {
+                newStory.inputSectionMap[kvp.Key] = new List<string>(kvp.Value);
+            }
 
             return newStory;
         }
