@@ -1,0 +1,103 @@
+837306986
+
+photorealistic RAW photo,
+young woman, teenager,
+white hair, slightly messy shoulder-length hair,
+slim build, medium breasts, natural proportions,
+realistic body proportions,
+balanced anatomy, correct limb proportions,
+
+wearing a fitted dark tank top, low rise jeans,
+wearing a cropped dark tank top,
+midriff visible,
+short fitted tank top ending above the waistline,
+exposed midriff
+
+
+standing facing the camera,
+her back pressed against a matte dark concrete wall,
+shoulders touching the wall,
+natural relaxed posture,
+
+soft sultry expression,
+eyes looking slightly to the side,
+
+three-quarter body shot, framed from head to knees,
+85mm lens,
+eye-level camera,
+shallow depth of field,
+natural skin tones,
+cinematic lighting,
+dark textured wall behind her,
+fine fabric detail,
+sharp focus,
+subtle skin texture,
+realistic lighting contrast
+
+Negative prompt: low quality, worst quality,
+overly stylized, anime, cartoon, illustration,
+exaggerated proportions,
+extra limbs, extra fingers,
+blurry, soft focus,
+watermark, text, logo
+
+Steps: 30, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 5, Seed: 837306986, Size: 1024x1536, Model hash: 4796b66fd0, Model: realismByStableYogi_ponyV3VAE, Version: v1.10.1
+
+
+
+
+You want:
+
+• 2 neutral face shots
+• 2 slight angle shots
+• 2 different lighting
+• 2 different outfits
+• 2 slight expression changes
+
+All same woman.
+
+
+photorealistic RAW photo, passport-style portrait, ID photo style,
+
+16 year old girl,
+white hair, shoulder-length hair,
+
+heart face shape,
+high cheekbones,
+slightly narrow jawline,
+small straight nose,
+large eyes, soft almond-shaped eyes,
+narrow chin,
+balanced facial symmetry,
+
+neutral expression,
+looking directly at camera,
+mouth closed,
+
+simple dark tank top,
+plain neutral background,
+
+chest-up portrait,
+centered composition,
+85mm lens,
+eye-level camera,
+even natural lighting,
+sharp focus,
+realistic skin texture,
+
+
+low quality, worst quality,
+anime, cartoon, illustration,
+heavy makeup,
+dramatic lighting,
+harsh shadows,
+overexposed, underexposed,
+extreme angle, side profile,
+blur,
+watermark, text, logo
+
+
+Steps: 32, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 5.5, Seed: 3887945346, Size: 1024x1536, Model hash: 4796b66fd0, Model: realismByStableYogi_ponyV3VAE, Version: v1.10.1
+
+
+

@@ -58,3 +58,31 @@ Steps: 29, Sampler: Euler, Schedule type: Automatic, CFG scale: 5, Seed: 1805012
 
 
 
+masterpiece, best quality, amazing quality, very aesthetic, angle,
+indoor, on a bed, backlight, window blinds, dramatic light,
+1girl, nude, bright ginger hair, messy hair, , nervous, looking back, , medium breasts, (exposed breasts:1.3), moaning, pubic hair,
+vaginal sex, deep penetration from behind, doggy style position, spread legs, arched back, (large puffy pussy, labia, clitoris:1.3), perfect penis, detailed penis,
+side view
+beautiful mature face
+Steps: 15, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 5, Seed: 955962503, Size: 1228x1843, Model hash: bdb59bac77, Model: waiIllustriousSDXL_v140, Clip skip: 2, Version: v1.10.1
+
+
+
+
+masterpiece, best quality, amazing quality, very aesthetic, angle,
+indoor, on a bed, backlight, window blinds, dramatic light,
+1girl, nude, bright ginger hair, messy hair, , nervous, looking back, , medium breasts, exposed breasts, moaning, pubic hair,
+vaginal sex, deep penetration from behind, (doggy style position:1.3), spread legs, arched back, (large puffy pussy, labia, clitoris:1.3), perfect penis, detailed penis,
+side view
+beautiful mature face
+Steps: 15, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 5, Seed: 955962503, Size: 1228x1843, Model hash: bdb59bac77, Model: waiIllustriousSDXL_v140, Clip skip: 2, Version: v1.10.1
+
+
+grey hair, long hair, green eyes, twintails, parted bangs, earrings, pointy ears,medium breasts, striped shirt, white capelet, black belt, white skirt, long sleeves, black pantyhose,heavy breathing,looking at viewer,spread legs, nipples,torn clothes,sweat, saliva,pussy, penis,double handjob, fellatio, sex, hands up, deepthroat, forest ,motion lines, thigh grab,bouncing breasts,3mans,clothed sex,
+cinematic, natural skin,soft lighting, volumetric lighting,
+(masterpiece:1.2), (best quality:1.2), (very aesthetic:1.2), (amazing quality,:1.2), (detailed background),(best illumination),newest, perfect anatomy,illustration, <lora:96YOTTEA-WAI:0.3> <lora:mon_monmon2133:0.3>
+Negative prompt: negativeXL_D, (worst quality, low quality, extra digits:1.4),(extra fingers), (bad hands), missing fingers, unaestheticXL2v10,
+Steps: 30, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 6, Seed: 479303641, Size: 1228x1843, Model hash: bdb59bac77, Model: waiIllustriousSDXL_v140, Clip skip: 2, Lora hashes: "96YOTTEA-WAI: 7a6cdc714921, mon_monmon2133: 9dcf6d165d08", Version: v1.10.1
+
+
+
