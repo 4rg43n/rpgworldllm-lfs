@@ -27,11 +27,7 @@ namespace RPGWorldLLM.GenAI.Story
             newStory.memoryItems = new List<MemoryItem>();
             foreach (var item in memoryItems)
             {
-                newStory.memoryItems.Add(new MemoryItem
-                {
-                    rawText = item.rawText,
-                    summmarizedText = item.summmarizedText
-                });
+                newStory.memoryItems.Add(new MemoryItem(item.rawText, item.summmarizedText));
             }
 
             newStory.factItems = new List<FactItem>();
@@ -64,7 +60,14 @@ namespace RPGWorldLLM.GenAI.Story
                 
                 newStory.inputSectionMap[kvp.Key] = block;
             }
-
+            
+            // deep copy parameters
+            newStory.parameters = new Dictionary<string, string>();
+            foreach (string kvp in parameters.Keys)
+            {
+                newStory.parameters[kvp] = parameters[kvp];
+            }
+            
             return newStory;
         }
 

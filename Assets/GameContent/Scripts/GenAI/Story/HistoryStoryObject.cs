@@ -24,11 +24,7 @@ namespace RPGWorldLLM.GenAI.Story
             clone.memoryItems = new List<MemoryItem>();
             foreach (var item in memoryItems)
             {
-                clone.memoryItems.Add(new MemoryItem
-                {
-                    rawText = item.rawText,
-                    summmarizedText = item.summmarizedText
-                });
+                clone.memoryItems.Add(new MemoryItem(item.rawText, item.summmarizedText));
             }
 
             // Deep copy factItems
@@ -56,5 +52,16 @@ namespace RPGWorldLLM.GenAI.Story
     {
         public string rawText;
         public string summmarizedText;
+
+        public MemoryItem(string response)
+        {
+            rawText=summmarizedText=response;
+        }
+        
+        public MemoryItem(string response, string summary)
+        {
+            rawText=response;
+            summmarizedText=summary;
+        }
     }
 }

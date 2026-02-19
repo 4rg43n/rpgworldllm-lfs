@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RPGWorld.Chat;
 using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Story
@@ -12,6 +13,11 @@ namespace RPGWorldLLM.GenAI.Story
         public string test_story_load = "story_example.txt";
 
         public StoryDefinition story;
+        public List<BaseStoryObject> storyObjects=new List<BaseStoryObject>();
+        
+        public List<StoryFrame> storyFrames = new List<StoryFrame>();
+        
+        public StoryFrame CurrentStoryFrame => storyFrames[storyFrames.Count-1];
         
         private void Awake()
         {
@@ -28,17 +34,15 @@ namespace RPGWorldLLM.GenAI.Story
         private void Start()
         {
             story = StoryDefinition.LoadFromTextAssetST(test_story_load);
-            List<BaseStoryObject> storyObjects = story.ProcessSections();
-
-            Debug.Log("Story loaded");
+            storyObjects = story.ProcessSections();
             
-            if (storyObjects.Count > 0)
-            {
-                foreach (BaseStoryObject obj in storyObjects)
-                {
-                    Debug.Log(obj.ToString());
-                }
-            }
+            StoryFrame frame = StoryFrame.CreateFrom(story, storyObjects);
+            storyFrames.Add(frame);
+
+            CurrentStoryFrame.AddResponse(CurrentStoryFrame.currentStory.parameters["first_message"]);
+            ChatHistory.Instance.AddText("first_message", CurrentStoryFrame.response);
+            
+            Debug.Log("Story loaded");
         }
     }
 
