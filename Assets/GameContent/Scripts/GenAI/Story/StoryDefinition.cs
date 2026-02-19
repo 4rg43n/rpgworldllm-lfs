@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Story
 {
+    [Serializable]
     public class StoryDefinition : HistoryStoryObject
     {
         public Dictionary<string, string> settings = new Dictionary<string, string>();
@@ -78,9 +80,9 @@ namespace RPGWorldLLM.GenAI.Story
             foreach (string section in inputSectionMap.Keys)
             {
                 if (section == "title")
-                    name = string.Join("\n", inputSectionMap[section]);
+                    name = string.Join("\n", inputSectionMap[section][0]);
                 else if (section == "description")
-                    description = string.Join("\n", inputSectionMap[section]);
+                    description = string.Join("\n", inputSectionMap[section][0]);
                 else if (section == "characters")
                 {
                     List<List<string>> charDefs = inputSectionMap[section];

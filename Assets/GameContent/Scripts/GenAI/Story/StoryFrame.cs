@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Story
 {
+    [Serializable]
     public class StoryFrame
     {
         public StoryDefinition currentStory;

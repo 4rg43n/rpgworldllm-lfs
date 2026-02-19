@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using RPGWorldLLM.Utils;
 
 namespace RPGWorldLLM.GenAI.Story
 {
-
+    [Serializable]
     public class LocationDefinition : HistoryStoryObject
     {
         public override string PrintName

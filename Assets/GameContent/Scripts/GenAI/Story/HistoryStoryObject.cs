@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Story
 {
-
+    [Serializable]
     public class HistoryStoryObject : BaseStoryObject
     {
         public List<MemoryItem> memoryItems = new List<MemoryItem>();

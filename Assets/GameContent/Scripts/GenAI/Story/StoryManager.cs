@@ -17,6 +17,7 @@ namespace RPGWorldLLM.GenAI.Story
         
         public List<StoryFrame> storyFrames = new List<StoryFrame>();
         
+        public PlayerDefinition player=new PlayerDefinition();
         public StoryFrame CurrentStoryFrame => storyFrames[storyFrames.Count-1];
         
         private void Awake()

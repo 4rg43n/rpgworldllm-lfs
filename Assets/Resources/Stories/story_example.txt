@@ -5,6 +5,7 @@ White Void
 ##############################################################################
 ## Description (Browsing description)
 The white void stretches out before you. You can create anything, or be anyone.
+This is the second line.
 
 ##############################################################################
 ## World (Type and mood)

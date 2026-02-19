@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Story
 {
+    [Serializable]
     public abstract class BaseStoryObject
     {
         public int id = System.Guid.NewGuid().GetHashCode(); // unique id for the object
