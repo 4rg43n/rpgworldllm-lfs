@@ -28,7 +28,7 @@ namespace RPGWorldLLM.GenAI.Story
         private void Start()
         {
             story = StoryDefinition.LoadFromTextAssetST(test_story_load);
-            List<BaseStoryObject> storyObjects = story.ReadStoryObjectsFromInputMap();
+            List<BaseStoryObject> storyObjects = story.ProcessSections();
 
             Debug.Log("Story loaded");
             

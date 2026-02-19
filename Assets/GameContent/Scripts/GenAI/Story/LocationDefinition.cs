@@ -5,20 +5,18 @@ using RPGWorldLLM.Utils;
 namespace RPGWorldLLM.GenAI.Story
 {
 
-    public class CharacterDefinition : HistoryStoryObject
+    public class LocationDefinition : HistoryStoryObject
     {
-        public bool isNarrator = false;
-
         public override string PrintName
         {
-            get => name +(isNarrator ? " (Narrator)" : " (Character)");
+            get { return name+" (Location)"; }
         }
 
-        public static CharacterDefinition FromString(string str)
+        public static LocationDefinition FromString(string str)
         {
             Dictionary<string, string> dict = TextProcessor.ToDictionary(str);
 
-            var character = new CharacterDefinition
+            var character = new LocationDefinition
             {
                 parameters = new Dictionary<string, string>()
             };
@@ -31,14 +29,7 @@ namespace RPGWorldLLM.GenAI.Story
                 if (string.IsNullOrEmpty(key))
                     continue;
 
-                if (key == "narrator")
-                {
-                    character.name = value;
-                    character.isNarrator = true;
-                    continue;
-                }
-
-                if (key == "name")
+                if (key == "name" || key == "narrator")
                 {
                     character.name = value;
                     continue;
@@ -56,6 +47,5 @@ namespace RPGWorldLLM.GenAI.Story
             return character;
         }
     }
-
 }
 

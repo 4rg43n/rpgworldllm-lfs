@@ -13,8 +13,10 @@ namespace RPGWorldLLM.Utils
             return str.Replace(toReplace, replaceWith ?? string.Empty);
         }
 
-        public static string ReplaceAuto(string toReplace, string str)
+        public static string ReplaceAuto(string toReplace, string str, out string replaceWithTag)
         {
+            replaceWithTag = "";
+            
             if (string.IsNullOrEmpty(str) || string.IsNullOrEmpty(toReplace))
                 return str;
 
@@ -43,6 +45,8 @@ namespace RPGWorldLLM.Utils
 
             if (replaceWith == null)
                 return str;
+            
+            replaceWithTag = replaceWith;
 
             string withoutDefinition = string.Join("\n", Array.FindAll(lines, l => l != null));
             return Replace(toReplace, replaceWith, withoutDefinition);

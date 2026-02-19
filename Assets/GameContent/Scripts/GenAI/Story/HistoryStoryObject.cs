@@ -9,6 +9,8 @@ namespace RPGWorldLLM.GenAI.Story
         public List<MemoryItem> memoryItems = new List<MemoryItem>();
         public List<FactItem> factItems = new List<FactItem>();
         
+        public Dictionary<string, string> parameters = new Dictionary<string, string>();
+        
         public override BaseStoryObject Clone()
         {
             var clone = new HistoryStoryObject();

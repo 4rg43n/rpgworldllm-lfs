@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using RPGWorldLLM.Logging;
 using RPGWorldLLM.Utils;
@@ -8,9 +9,10 @@ namespace RPGWorldLLM.GenAI.Story
 {
     public class StoryDefinition : HistoryStoryObject
     {
+        public Dictionary<string, string> settings = new Dictionary<string, string>();
         public Dictionary<string, List<string>> sectionMap = new Dictionary<string, List<string>>(); // the sections after they're processed
         
-        public Dictionary<string, List<string>> inputSectionMap = new Dictionary<string, List<string>>(); // raw section data
+        public Dictionary<string, List<List<string>>> inputSectionMap = new Dictionary<string, List<List<string>>>(); // raw section data
 
         public override BaseStoryObject Clone()
         {
@@ -50,32 +52,70 @@ namespace RPGWorldLLM.GenAI.Story
             }
 
             // Deep copy inputSectionMap
-            newStory.inputSectionMap = new Dictionary<string, List<string>>();
+            newStory.inputSectionMap = new Dictionary<string, List<List<string>>>();
             foreach (var kvp in inputSectionMap)
             {
-                newStory.inputSectionMap[kvp.Key] = new List<string>(kvp.Value);
+                List<List<string>> block = new List<List<string>>();
+                foreach (List<string> line in kvp.Value)
+                {
+                    List<string> lineCopy = new List<string>(line);
+                    block.Add(lineCopy);
+                }
+                
+                newStory.inputSectionMap[kvp.Key] = block;
             }
 
             return newStory;
         }
 
-        public List<BaseStoryObject> ReadStoryObjectsFromInputMap()
+        public List<BaseStoryObject> ProcessSections()
         {
             List<BaseStoryObject> storyObjects = new List<BaseStoryObject>();
             
-            foreach (KeyValuePair<string, List<string>> kvp in inputSectionMap)
+            foreach (string section in inputSectionMap.Keys)
             {
-                if (kvp.Key.Trim().ToLower() == "characters")
+                if (section == "title")
+                    name = string.Join("\n", inputSectionMap[section]);
+                else if (section == "description")
+                    description = string.Join("\n", inputSectionMap[section]);
+                else if (section == "characters")
                 {
-                    foreach (string str in kvp.Value)
+                    List<List<string>> charDefs = inputSectionMap[section];
+                    foreach (List<string> charDef in charDefs)
                     {
-                        string cstr = TextProcessor.ReplaceAuto("{{char}}", str);
-                        CharacterDefinition chr = CharacterDefinition.FromString(cstr);
-                        storyObjects.Add(chr);
+                        string charStr = string.Join("\n", charDef);
+                        CharacterDefinition character = CharacterDefinition.FromString(charStr);
+                        storyObjects.Add(character);
                     }
                 }
-            }
+                else if (section == "locations")
+                {
+                    List<List<string>> locDefs = inputSectionMap[section];
+                    foreach (List<string> locDef in locDefs)
+                    {
+                        string locStr = string.Join("\n", locDef);
+                        LocationDefinition location = LocationDefinition.FromString(locStr);
+                        storyObjects.Add(location);
+                    }
+                }
+                else
+                {
+                    string desc = "";
+                    foreach (List<string> line in inputSectionMap[section])
+                    {
+                        foreach (string lstr in line)
+                        {
+                            desc += lstr.Trim() + "\n";
+                        }
 
+                        desc += "\n";
+                    }
+
+                    desc = desc.Trim();
+                    parameters[section] = desc;
+                }
+            }
+            
             return storyObjects;
         }
 
@@ -92,70 +132,77 @@ namespace RPGWorldLLM.GenAI.Story
 
             string[] lines = textAsset.text.Split('\n');
 
-            string currentSection = null;
+            string currentSection = "";
             List<string> currentBlockLines = new List<string>();
 
             for (int i = 0; i < lines.Length; i++)
             {
-                string line = lines[i].TrimEnd('\r');
+                string line = lines[i].Trim();
 
                 if (line.StartsWith("//") || line.StartsWith("###"))
                     continue;
 
                 if (line.StartsWith("##"))
                 {
-                    // finalize previous section's last block
-                    if (currentSection != null && currentBlockLines.Count > 0)
+                    if (currentSection!="" && currentBlockLines.Count>0)
                     {
-                        story.inputSectionMap[currentSection].Add(string.Join("\n", currentBlockLines));
+                        // end black
+                        story.inputSectionMap[currentSection.Trim().ToLower()] = FormatBlock(currentBlockLines);
+                        currentSection = "";
                         currentBlockLines.Clear();
                     }
 
-                    string headerContent = line.Substring(3).Trim();
-                    currentSection = headerContent.Split(' ')[0];
-                    story.inputSectionMap[currentSection] = new List<string>();
-                    continue;
-                }
-
-                if (currentSection == null)
-                    continue;
-
-                if (string.IsNullOrWhiteSpace(line))
-                {
-                    if (currentBlockLines.Count > 0)
-                    {
-                        story.inputSectionMap[currentSection].Add(string.Join("\n", currentBlockLines));
-                        currentBlockLines.Clear();
-                    }
+                    // start a new block
+                    string[] header_tokens = line.Split(" ");
+                    currentSection = header_tokens[1];
+                    currentBlockLines.Clear();
                 }
                 else
                 {
-                    currentBlockLines.Add(line);
+                    // add line to current block
+                    if (currentSection!="")
+                    {
+                        currentBlockLines.Add(line);
+                    }
                 }
             }
-
-            // finalize last block
-            if (currentSection != null && currentBlockLines.Count > 0)
-            {
-                story.inputSectionMap[currentSection].Add(string.Join("\n", currentBlockLines));
-            }
-
-            foreach (string key in  story.inputSectionMap.Keys)
-            {
-                StringBuilder sb =  new StringBuilder();
-                List<string> blockLines = story.inputSectionMap[key];
-                foreach (string line in blockLines)
-                {
-                    sb.AppendLine(line);
-                    sb.Append("\n");
-                }
-
-                StoryLogData log = new StoryLogData(key, sb.ToString());
-                LogManager.Instance.Log(log);
-            }
+            
+            // make sure last block is added
+            if (currentSection!=""&&currentBlockLines.Count>0)
+                story.inputSectionMap[currentSection.Trim().ToLower()] = FormatBlock(currentBlockLines);
 
             return story;
         }
+
+        static List<List<string>> FormatBlock(List<string> block)
+        {
+            List<List<string>> formatted = new List<List<string>>();
+            List<string> inner_block = null;
+
+            foreach (string line in block)
+            {
+                if (line != "")
+                {
+                    if (inner_block==null)
+                        inner_block = new List<string>();
+                    inner_block.Add(line);
+                }
+                else
+                {
+                    if (inner_block!=null)
+                    {
+                        formatted.Add(inner_block);
+                        inner_block = null;
+                    }
+                }
+            }
+            
+            if (inner_block!=null)
+                formatted.Add(inner_block);
+
+            return formatted;
+        }
+
     }
 
 }
