@@ -4,11 +4,11 @@ using TMPro;
 
 namespace RPGWorld.UI
 {
-    public class ChatMessageTextUI : MonoBehaviour
+    public class ChatMessageTextUI : ChatMessageUI
     {
         private TextMeshProUGUI textComponent;
 
-public static ChatMessageTextUI CreateST(Transform parent, GameObject prefab, string text)
+        public static ChatMessageTextUI CreateST(Transform parent, GameObject prefab, string text)
         {
             var go = Instantiate(prefab, parent);
             go.name = "ChatMsg_Text";
@@ -19,6 +19,7 @@ public static ChatMessageTextUI CreateST(Transform parent, GameObject prefab, st
             var ui = go.AddComponent<ChatMessageTextUI>();
             ui.textComponent = tmp;
 
+            
             return ui;
         }
     }

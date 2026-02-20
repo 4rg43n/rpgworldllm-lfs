@@ -6,15 +6,20 @@ namespace RPGWorld.Chat
     [Serializable]
     public abstract class ChatMessage
     {
+        public string sender;
+
+        public ChatMessage(string sender)
+        {
+            this.sender = sender;
+        }
     }
 
     [Serializable]
     public class ChatMessageText : ChatMessage
     {
-        public string sender;
         public string text;
 
-        public ChatMessageText(string sender, string text)
+        public ChatMessageText(string sender, string text) : base(sender)
         {
             this.sender = sender;
             this.text = text;
@@ -26,7 +31,7 @@ namespace RPGWorld.Chat
     {
         [NonSerialized] public Texture2D image;
 
-        public ChatMessageImage(Texture2D image)
+        public ChatMessageImage(string sender, Texture2D image) : base(sender)
         {
             this.image = image;
         }

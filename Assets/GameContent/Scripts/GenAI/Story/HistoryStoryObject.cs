@@ -11,7 +11,23 @@ namespace RPGWorldLLM.GenAI.Story
         public List<FactItem> factItems = new List<FactItem>();
         
         public Dictionary<string, string> parameters = new Dictionary<string, string>();
-        
+
+        public void FormatText(PlayerDefinition player)
+        {
+            name = name.Replace("{{user}}", player.tag); // name of the story object
+            tag = tag.Replace("{{user}}", player.tag); // tag of the story object
+            description = description.Replace("{{user}}", player.tag); // description of the story object
+            
+            List<string> keys = new List<string>(parameters.Keys);
+
+            foreach (string key in keys)
+            {
+                string str = parameters[key];
+                str = str.Replace("{{user}}", player.tag);
+                parameters[key] = str;
+            }
+        }
+
         public override BaseStoryObject Clone()
         {
             var clone = new HistoryStoryObject();

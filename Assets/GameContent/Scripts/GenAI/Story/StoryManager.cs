@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RPGWorld.Chat;
+using RPGWorld.UI;
 using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Story
@@ -36,14 +37,37 @@ namespace RPGWorldLLM.GenAI.Story
         {
             story = StoryDefinition.LoadFromTextAssetST(test_story_load);
             storyObjects = story.ProcessSections();
+            story.FormatText(player);
+
+            foreach (BaseStoryObject obj in storyObjects)
+            {
+                if (obj is HistoryStoryObject)
+                {
+                    ((HistoryStoryObject)obj).FormatText(player);
+                }
+            }
             
             StoryFrame frame = StoryFrame.CreateFrom(story, storyObjects);
             storyFrames.Add(frame);
 
             CurrentStoryFrame.AddResponse(CurrentStoryFrame.currentStory.parameters["first_message"]);
-            ChatHistory.Instance.AddText("first_message", CurrentStoryFrame.response);
+            ProcessResponse(CurrentStoryFrame.response);
+            
+            PlayerInputUI.Instance.OnSubmitEvent += ProcessInput;
             
             Debug.Log("Story loaded");
+        }
+
+        public void ProcessResponse(string response)
+        {
+            ChatHistory.Instance.AddText("narrator", CurrentStoryFrame.response);
+            Debug.Log(response);
+        }
+        
+        public void ProcessInput(string input_str)
+        {
+            ChatHistory.Instance.AddText("player", input_str);
+            Debug.Log(input_str);
         }
     }
 

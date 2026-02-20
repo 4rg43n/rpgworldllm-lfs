@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 namespace RPGWorld.UI
 {
-    public class ChatMessageImageUI : MonoBehaviour
+    public class ChatMessageImageUI : ChatMessageUI
     {
         private Image imageComponent;
 
-public static ChatMessageImageUI CreateST(Transform parent, GameObject prefab, Texture2D texture)
+        public static ChatMessageImageUI CreateST(Transform parent, GameObject prefab, Texture2D texture)
         {
             var go = Instantiate(prefab, parent);
             go.name = "ChatMsg_Image";

@@ -8,11 +8,22 @@ namespace RPGWorld.UI
 {
     public class PlayerInputUI : MonoBehaviour
     {
+        public delegate void SubmitHandlerDel(string input);
+        
+        public static PlayerInputUI Instance { get; private set; }
+        
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private Button submitButton;
 
+        public event SubmitHandlerDel OnSubmitEvent;
+        
         private void Awake()
         {
+            if (Instance != null)
+                return;
+            
+            Instance = this;
+            
             if (inputField == null)
                 inputField = GetComponentInChildren<TMP_InputField>();
             if (submitButton == null)
@@ -57,14 +68,9 @@ namespace RPGWorld.UI
             string str = inputField.text;
             if (!str.IsUnityNull() && str.Length > 0)
             {
-                ProcessInput(str);
+                if (OnSubmitEvent != null)
+                    OnSubmitEvent(str);
             }
-        }
-
-        private void ProcessInput(string input_str)
-        {
-            ChatHistory.Instance.AddText("test", input_str);
-            Debug.Log(input_str);
         }
     }
 }

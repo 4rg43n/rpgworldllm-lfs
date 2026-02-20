@@ -2,27 +2,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using RPGWorld.UI;
+using TMPro;
 
 namespace RPGWorld.Chat
 {
     public class ChatHistory : MonoBehaviour
     {
         public static ChatHistory Instance { get; private set; }
-        
+
         [SerializeField] private ScrollRect scrollRect;
-        
+
         [SerializeField] private GameObject textMessagePrefab;
         [SerializeField] private GameObject imageMessagePrefab;
 
         private const string TextPrefabPath = "Assets/GameContent/Prefabs/UI/TextMsgPanel_Player.prefab";
         private const string ImagePrefabPath = "Assets/GameContent/Prefabs/UI/ImageMsgPanel.prefab";
-[SerializeField] private Transform content;
+        [SerializeField] private Transform content;
+
+        public Color playerColor = Color.gray;
+        public Color narratorColor = Color.red;
+        
+        public Color playerTextColor = Color.white;
+        public Color narratorTextColor = Color.white;
 
         private readonly List<ChatMessage> messages = new List<ChatMessage>();
 
         public IReadOnlyList<ChatMessage> Messages => messages;
 
-private void Awake()
+        private void Awake()
         {
             if (Instance == null)
                 Instance = this;
@@ -47,7 +54,7 @@ private void Awake()
             }
         }
 
-private void LoadPrefabs()
+        private void LoadPrefabs()
         {
 #if UNITY_EDITOR
             if (textMessagePrefab == null)
@@ -82,14 +89,14 @@ private void LoadPrefabs()
 
         public void AddText(string sender, string text)
         {
-            var message = new ChatMessageText(sender, text);
+            ChatMessageText message = new ChatMessageText(sender, text);
             messages.Add(message);
             AppendMessageUI(message);
         }
 
-        public void AddImage(Texture2D image)
+        public void AddImage(string sender, Texture2D image)
         {
-            var message = new ChatMessageImage(image);
+            ChatMessageImage message = new ChatMessageImage(sender, image);
             messages.Add(message);
             AppendMessageUI(message);
         }
@@ -103,19 +110,35 @@ private void LoadPrefabs()
                 AppendMessageUI(message);
         }
 
-private void AppendMessageUI(ChatMessage message)
+        private void AppendMessageUI(ChatMessage message)
         {
             switch (message)
             {
                 case ChatMessageText textMsg:
-                    ChatMessageTextUI.CreateST(content, textMessagePrefab, textMsg.text);
+                    ChatMessageTextUI textUI = ChatMessageTextUI.CreateST(content, textMessagePrefab, textMsg.text);
+                    SetMessageColor(message, textUI);
                     break;
                 case ChatMessageImage imageMsg:
-                    ChatMessageImageUI.CreateST(content, imageMessagePrefab, imageMsg.image);
+                    ChatMessageImageUI imgUI = ChatMessageImageUI.CreateST(content, imageMessagePrefab, imageMsg.image);
+                    SetMessageColor(message, imgUI);
                     break;
             }
 
             ScrollToBottom();
+        }
+
+        private void SetMessageColor(ChatMessage message, ChatMessageUI ui)
+        {
+            if (message.sender == "narrator")
+            {
+                ui.gameObject.GetComponent<Image>().color = narratorColor;
+                ui.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = narratorTextColor;
+            }
+            else if (message.sender == "player")
+            {
+                ui.gameObject.GetComponent<Image>().color = playerColor;
+                ui.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = playerTextColor;
+            }
         }
 
         private float GetScrollViewWidth()
