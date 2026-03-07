@@ -13,6 +13,23 @@ namespace RPGWorldLLM.GenAI.Story
             get { return name+" (Location)"; }
         }
 
+        public override void CopyFrom(BaseStoryObject other)
+        {
+            if (other is LocationDefinition otherLocation)
+            {
+                base.CopyFrom(otherLocation);
+                // TODO: Copy location-specific parameters
+            }
+        }
+        
+        public override BaseStoryObject Clone()
+        {
+            LocationDefinition newLocation = new LocationDefinition();
+            newLocation.CopyFrom(this);
+
+            return newLocation;
+        }
+
         public static LocationDefinition FromString(string str)
         {
             Dictionary<string, string> dict = TextProcessor.ToDictionary(str);

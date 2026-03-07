@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RPGWorldLLM.GenAI.Story
 {
     [Serializable]
-    public class HistoryStoryObject : BaseStoryObject
+    public abstract class HistoryStoryObject : BaseStoryObject
     {
         public List<MemoryItem> memoryItems = new List<MemoryItem>();
         public List<FactItem> factItems = new List<FactItem>();
@@ -28,35 +28,30 @@ namespace RPGWorldLLM.GenAI.Story
             }
         }
 
-        public override BaseStoryObject Clone()
+        public override void CopyFrom(BaseStoryObject other)
         {
-            var clone = new HistoryStoryObject();
-
-            // Copy base properties
-            clone.id = id;
-            clone.name = name;
-            clone.description = description;
-
-            // Deep copy memoryItems
-            clone.memoryItems = new List<MemoryItem>();
-            foreach (var item in memoryItems)
+            if (other is HistoryStoryObject otherHistory)
             {
-                clone.memoryItems.Add(new MemoryItem(item.rawText, item.summmarizedText));
-            }
-
-            // Deep copy factItems
-            clone.factItems = new List<FactItem>();
-            foreach (var item in factItems)
-            {
-                clone.factItems.Add(new FactItem
+                base.CopyFrom(other);
+                // Deep copy memoryItems
+                memoryItems = new List<MemoryItem>();
+                foreach (var item in otherHistory.memoryItems)
                 {
-                    name = item.name,
-                    text = item.text
-                });
-            }
+                    memoryItems.Add(new MemoryItem(item.rawText, item.summmarizedText));
+                }
 
-            return clone;
+                // Deep copy factItems
+                factItems = new List<FactItem>();
+                foreach (var item in otherHistory.factItems)
+                {
+                    factItems.Add(new FactItem { name = item.name, text = item.text });
+                }
+                
+            }
+            else 
+                Debug.LogError("Cannot copy from " + other.GetType().Name);
         }
+
     }
 
     public class FactItem

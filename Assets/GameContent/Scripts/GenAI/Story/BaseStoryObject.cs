@@ -21,6 +21,13 @@ namespace RPGWorldLLM.GenAI.Story
             get => description;
         }
 
+        public virtual void CopyFrom(BaseStoryObject other)
+        {
+            name = other.name;
+            tag = other.tag;
+            description = other.description;
+        }
+        
         public abstract BaseStoryObject Clone(); // this method should return a deep copy of the object
 
         override public string ToString()

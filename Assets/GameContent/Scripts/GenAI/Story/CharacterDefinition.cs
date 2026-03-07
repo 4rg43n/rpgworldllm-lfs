@@ -15,6 +15,24 @@ namespace RPGWorldLLM.GenAI.Story
             get => name +(isNarrator ? " (Narrator)" : " (Character)");
         }
 
+        public override void CopyFrom(BaseStoryObject other)
+        {
+            if (other is CharacterDefinition otherCharacter)
+            {
+                base.CopyFrom(otherCharacter);
+                isNarrator = otherCharacter.isNarrator;
+            }
+            else 
+                Debug.LogError("Cannot copy from " + other.GetType().Name);
+        }
+        
+        public override BaseStoryObject Clone()
+        {
+            var clone = new CharacterDefinition();
+            clone.CopyFrom(this);
+            return clone;
+        }
+
         public static CharacterDefinition FromString(string str)
         {
             Dictionary<string, string> dict = TextProcessor.ToDictionary(str);

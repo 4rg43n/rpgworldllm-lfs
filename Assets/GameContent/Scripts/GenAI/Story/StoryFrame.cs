@@ -8,7 +8,8 @@ namespace RPGWorldLLM.GenAI.Story
     public class StoryFrame
     {
         public StoryDefinition currentStory;
-        List<BaseStoryObject> storyObjects=new List<BaseStoryObject>();
+        public PlayerDefinition player;
+        public List<BaseStoryObject> storyObjects=new List<BaseStoryObject>();
 
         public string response = ""; // the LLM response
         public string playerResponse = "";
@@ -19,7 +20,7 @@ namespace RPGWorldLLM.GenAI.Story
             currentStory.memoryItems.Add(new MemoryItem(response));
         }
 
-        public static StoryFrame CreateFrom(StoryDefinition story, List<BaseStoryObject> storyObjects)
+        public static StoryFrame CreateFrom(StoryDefinition story, List<BaseStoryObject> storyObjects, PlayerDefinition player)
         {
             StoryFrame frame = new StoryFrame();
             frame.currentStory=story.Clone() as StoryDefinition;
@@ -28,6 +29,8 @@ namespace RPGWorldLLM.GenAI.Story
             {
                 frame.storyObjects.Add(obj.Clone());
             }
+
+            frame.player = player.Clone() as PlayerDefinition;
             
             frame.response=story.parameters["first_message"];
 
@@ -43,6 +46,8 @@ namespace RPGWorldLLM.GenAI.Story
             {
                 newFrame.storyObjects.Add(obj.Clone());
             }
+            
+            newFrame.player = player.Clone() as PlayerDefinition;
             
             return newFrame;
         }

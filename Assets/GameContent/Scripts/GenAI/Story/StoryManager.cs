@@ -47,7 +47,7 @@ namespace RPGWorldLLM.GenAI.Story
                 }
             }
             
-            StoryFrame frame = StoryFrame.CreateFrom(story, storyObjects);
+            StoryFrame frame = StoryFrame.CreateFrom(story, storyObjects, player);
             storyFrames.Add(frame);
 
             CurrentStoryFrame.AddResponse(CurrentStoryFrame.currentStory.parameters["first_message"]);
@@ -60,7 +60,7 @@ namespace RPGWorldLLM.GenAI.Story
 
         public void ProcessResponse(string response)
         {
-            ChatHistory.Instance.AddText("narrator", CurrentStoryFrame.response);
+            ChatHistory.Instance.AddText("narrator", response);
             Debug.Log(response);
         }
         

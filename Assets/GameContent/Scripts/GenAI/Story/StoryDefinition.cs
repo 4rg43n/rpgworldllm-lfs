@@ -11,65 +11,42 @@ namespace RPGWorldLLM.GenAI.Story
     [Serializable]
     public class StoryDefinition : HistoryStoryObject
     {
-        public Dictionary<string, string> settings = new Dictionary<string, string>();
         public Dictionary<string, List<string>> sectionMap = new Dictionary<string, List<string>>(); // the sections after they're processed
-        
         public Dictionary<string, List<List<string>>> inputSectionMap = new Dictionary<string, List<List<string>>>(); // raw section data
+
+        public override void CopyFrom(BaseStoryObject other)
+        {
+            if (other is BaseStoryObject otherBase)
+            {
+                base.CopyFrom(otherBase);
+                
+                // Deep copy sectionMap
+                sectionMap = new Dictionary<string, List<string>>();
+                foreach (var kvp in sectionMap)
+                {
+                    sectionMap[kvp.Key] = new List<string>(kvp.Value);
+                }
+
+                // Deep copy inputSectionMap
+                inputSectionMap = new Dictionary<string, List<List<string>>>();
+                foreach (var kvp in inputSectionMap)
+                {
+                    List<List<string>> block = new List<List<string>>();
+                    foreach (List<string> line in kvp.Value)
+                    {
+                        List<string> lineCopy = new List<string>(line);
+                        block.Add(lineCopy);
+                    }
+                
+                    inputSectionMap[kvp.Key] = block;
+                }
+            }
+        }
 
         public override BaseStoryObject Clone()
         {
             StoryDefinition newStory = new StoryDefinition();
-
-            // Copy BaseStoryObject properties
-            newStory.id = id;
-            newStory.name = name;
-            newStory.description = description;
-
-            // Deep copy HistoryStoryObject lists
-            newStory.memoryItems = new List<MemoryItem>();
-            foreach (var item in memoryItems)
-            {
-                newStory.memoryItems.Add(new MemoryItem(item.rawText, item.summmarizedText));
-            }
-
-            newStory.factItems = new List<FactItem>();
-            foreach (var item in factItems)
-            {
-                newStory.factItems.Add(new FactItem
-                {
-                    name = item.name,
-                    text = item.text
-                });
-            }
-
-            // Deep copy sectionMap
-            newStory.sectionMap = new Dictionary<string, List<string>>();
-            foreach (var kvp in sectionMap)
-            {
-                newStory.sectionMap[kvp.Key] = new List<string>(kvp.Value);
-            }
-
-            // Deep copy inputSectionMap
-            newStory.inputSectionMap = new Dictionary<string, List<List<string>>>();
-            foreach (var kvp in inputSectionMap)
-            {
-                List<List<string>> block = new List<List<string>>();
-                foreach (List<string> line in kvp.Value)
-                {
-                    List<string> lineCopy = new List<string>(line);
-                    block.Add(lineCopy);
-                }
-                
-                newStory.inputSectionMap[kvp.Key] = block;
-            }
-            
-            // deep copy parameters
-            newStory.parameters = new Dictionary<string, string>();
-            foreach (string kvp in parameters.Keys)
-            {
-                newStory.parameters[kvp] = parameters[kvp];
-            }
-            
+            newStory.CopyFrom(this);
             return newStory;
         }
 
