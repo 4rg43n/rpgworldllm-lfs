@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using RPGWorld.Chat;
 using RPGWorld.UI;
+using RPGWorldLLM.GenAI.Utils;
 using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Story
@@ -35,27 +36,31 @@ namespace RPGWorldLLM.GenAI.Story
 
         private void Start()
         {
-            story = StoryDefinition.LoadFromTextAssetST(test_story_load);
-            storyObjects = story.ProcessSections();
-            story.FormatText(player);
+            // story = StoryDefinition.LoadFromTextAssetST(test_story_load);
+            // storyObjects = story.ProcessSections();
+            // story.FormatText(player);
+            //
+            // foreach (BaseStoryObject obj in storyObjects)
+            // {
+            //     if (obj is HistoryStoryObject)
+            //     {
+            //         ((HistoryStoryObject)obj).FormatText(player);
+            //     }
+            // }
+            //
+            // StoryFrame frame = StoryFrame.CreateFrom(story, storyObjects, player);
+            // storyFrames.Add(frame);
+            //
+            // CurrentStoryFrame.AddResponse(CurrentStoryFrame.currentStory.parameters["first_message"]);
+            // ProcessResponse(CurrentStoryFrame.response);
+            //
+            // PlayerInputUI.Instance.OnSubmitEvent += ProcessInput;
+            //
+            // Debug.Log("Story loaded");
 
-            foreach (BaseStoryObject obj in storyObjects)
-            {
-                if (obj is HistoryStoryObject)
-                {
-                    ((HistoryStoryObject)obj).FormatText(player);
-                }
-            }
+            Dictionary<string, List<List<string>>> storyDefinition = DataReadingUtils.ReadStoryDefinitionST("Stories/story_example");
+            Debug.Log("Example story loaded. Section num: " + storyDefinition.Count);
             
-            StoryFrame frame = StoryFrame.CreateFrom(story, storyObjects, player);
-            storyFrames.Add(frame);
-
-            CurrentStoryFrame.AddResponse(CurrentStoryFrame.currentStory.parameters["first_message"]);
-            ProcessResponse(CurrentStoryFrame.response);
-            
-            PlayerInputUI.Instance.OnSubmitEvent += ProcessInput;
-            
-            Debug.Log("Story loaded");
         }
 
         public void ProcessResponse(string response)
