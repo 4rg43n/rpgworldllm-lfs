@@ -1,10 +1,37 @@
 using System.Collections.Generic;
+using RPGWorldLLM.GenAI.Story;
 using UnityEngine;
 
 namespace RPGWorldLLM.GenAI.Utils
 {
+    public static class DataReadingUtilsStringsST
+    {
+        public const string USER_TOKEN = "{{user}}";
+        public const string CHARACTER_TOKEN = "{{character}}";
+        public const string LOCATION_TOKEN = "{{location}}";
+        public const string NARRATOR_TOKEN = "{{narrator}}";
+
+
+        public const string LINE_COMMENT = "###";
+        public const string C_STYLE_COMMENT = "//";
+        
+        public const string SECTION_HEADER = "##";
+
+    }
+    
     public class DataReadingUtils : MonoBehaviour
     {
+
+        public static StoryFrame CreateStoryFrameFromTextAssetST(string resourcePath)
+        {
+            return null;
+        }
+        
+        public string FormatText(string token, string to_replace)
+        {
+            return token.Replace(to_replace, "");
+        }
+
         /// <summary>
         /// Loads a text asset from a Resources directory and returns its lines as a list.
         /// Blank lines are included as empty strings. Each line is trimmed.
@@ -21,11 +48,12 @@ namespace RPGWorldLLM.GenAI.Utils
             foreach (string line in lines)
             {
                 // Rule 1: skip comment lines
-                if (line.StartsWith("###") || line.StartsWith("//"))
+                if (line.StartsWith(DataReadingUtilsStringsST.LINE_COMMENT) || 
+                    line.StartsWith(DataReadingUtilsStringsST.C_STYLE_COMMENT))
                     continue;
 
                 // Rule 2: section header
-                if (line.StartsWith("##"))
+                if (line.StartsWith(DataReadingUtilsStringsST.SECTION_HEADER))
                 {
                     // Flush any in-progress record before switching sections
                     if (currentSection != null && currentRecord != null && currentRecord.Count > 0)
