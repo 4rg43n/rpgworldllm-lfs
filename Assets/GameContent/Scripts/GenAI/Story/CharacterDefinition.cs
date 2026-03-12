@@ -8,22 +8,14 @@ namespace RPGWorldLLM.GenAI.Story
     [Serializable]
     public class CharacterDefinition : HistoryStoryObject
     {
-        public bool isNarrator = false;
 
-        public override string PrintName
+        public bool IsNarrator()
         {
-            get => name +(isNarrator ? " (Narrator)" : " (Character)");
-        }
-
-        public override void CopyFrom(BaseStoryObject other)
-        {
-            if (other is CharacterDefinition otherCharacter)
-            {
-                base.CopyFrom(otherCharacter);
-                isNarrator = otherCharacter.isNarrator;
-            }
-            else 
-                Debug.LogError("Cannot copy from " + other.GetType().Name);
+            if (Parameter(KEY_TITLE_NAME).Trim().ToLower().Contains(TAG_NARRATOR)||
+                Parameter(KEY_TAG).Trim().ToLower().Contains(TAG_NARRATOR))
+                return true;
+            
+            return false;
         }
         
         public override BaseStoryObject Clone()
@@ -37,10 +29,7 @@ namespace RPGWorldLLM.GenAI.Story
         {
             Dictionary<string, string> dict = TextProcessor.ToDictionary(str);
 
-            var character = new CharacterDefinition
-            {
-                parameters = new Dictionary<string, string>()
-            };
+            var character = new CharacterDefinition();
 
             foreach (KeyValuePair<string, string> kvp in dict)
             {
@@ -50,26 +39,19 @@ namespace RPGWorldLLM.GenAI.Story
                 if (string.IsNullOrEmpty(key))
                     continue;
 
-                if (key == "narrator")
+                if (key == TAG_NAME || key == TAG_NARRATOR)
                 {
-                    character.name = value;
-                    character.isNarrator = true;
+                    character.objectParameters[KEY_TITLE_NAME] = value;
                     continue;
                 }
 
-                if (key == "name")
+                if (key == TAG_PHYSICAL_DESCRIPTION)
                 {
-                    character.name = value;
+                    character.objectParameters[KEY_DESC] = value;
                     continue;
                 }
 
-                if (key == "physical description")
-                {
-                    character.description = value;
-                    continue;
-                }
-
-                character.parameters[kvp.Key.Trim()] = value;
+                character.objectParameters[kvp.Key.Trim().ToLower()] = value;
             }
 
             return character;

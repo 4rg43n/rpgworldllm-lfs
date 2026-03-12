@@ -8,20 +8,7 @@ namespace RPGWorldLLM.GenAI.Story
     [Serializable]
     public class LocationDefinition : HistoryStoryObject
     {
-        public override string PrintName
-        {
-            get { return name+" (Location)"; }
-        }
 
-        public override void CopyFrom(BaseStoryObject other)
-        {
-            if (other is LocationDefinition otherLocation)
-            {
-                base.CopyFrom(otherLocation);
-                // TODO: Copy location-specific parameters
-            }
-        }
-        
         public override BaseStoryObject Clone()
         {
             LocationDefinition newLocation = new LocationDefinition();
@@ -34,10 +21,7 @@ namespace RPGWorldLLM.GenAI.Story
         {
             Dictionary<string, string> dict = TextProcessor.ToDictionary(str);
 
-            var character = new LocationDefinition
-            {
-                parameters = new Dictionary<string, string>()
-            };
+            var character = new LocationDefinition();
 
             foreach (KeyValuePair<string, string> kvp in dict)
             {
@@ -47,19 +31,19 @@ namespace RPGWorldLLM.GenAI.Story
                 if (string.IsNullOrEmpty(key))
                     continue;
 
-                if (key == "name" || key == "narrator")
+                if (key == TAG_NAME || key == TAG_NARRATOR)
                 {
-                    character.name = value;
+                    character.objectParameters[KEY_TITLE_NAME] = value;
                     continue;
                 }
 
-                if (key == "physical description")
+                if (key == TAG_PHYSICAL_DESCRIPTION)
                 {
-                    character.description = value;
+                    character.objectParameters[KEY_DESC] = value;
                     continue;
                 }
 
-                character.parameters[kvp.Key.Trim()] = value;
+                character.objectParameters[kvp.Key.Trim().ToLower()] = value;
             }
 
             return character;

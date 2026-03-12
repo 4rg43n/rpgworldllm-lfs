@@ -9,14 +9,13 @@ namespace RPGWorldLLM.GenAI.Story
     {
         public List<MemoryItem> memoryItems = new List<MemoryItem>();
         public List<FactItem> factItems = new List<FactItem>();
-        
-        public Dictionary<string, string> parameters = new Dictionary<string, string>();
 
         public override void CopyFrom(BaseStoryObject other)
         {
             if (other is HistoryStoryObject otherHistory)
             {
                 base.CopyFrom(other);
+                
                 // Deep copy memoryItems
                 memoryItems = new List<MemoryItem>();
                 foreach (var item in otherHistory.memoryItems)

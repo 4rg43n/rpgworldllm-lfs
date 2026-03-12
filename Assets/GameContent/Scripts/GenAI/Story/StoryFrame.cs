@@ -32,7 +32,7 @@ namespace RPGWorldLLM.GenAI.Story
 
             frame.player = player.Clone() as PlayerDefinition;
             
-            frame.response=story.parameters["first_message"];
+            frame.response=story.objectParameters["first_message"];
 
             return frame;
         }

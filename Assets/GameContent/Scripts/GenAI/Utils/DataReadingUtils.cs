@@ -16,6 +16,8 @@ namespace RPGWorldLLM.GenAI.Utils
         public const string C_STYLE_COMMENT = "//";
         
         public const string SECTION_HEADER = "##";
+        
+        
 
     }
     

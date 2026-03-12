@@ -11,16 +11,6 @@ namespace RPGWorldLLM.GenAI.Story
     [Serializable]
     public class StoryDefinition : HistoryStoryObject
     {
-        
-
-        public override void CopyFrom(BaseStoryObject other)
-        {
-            if (other is BaseStoryObject otherBase)
-            {
-                base.CopyFrom(otherBase);
-            }
-        }
-
         public override BaseStoryObject Clone()
         {
             StoryDefinition newStory = new StoryDefinition();
